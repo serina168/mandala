@@ -31,12 +31,12 @@ header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 6px 26px -18px 
 .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:1.12rem;letter-spacing:.08em;color:var(--brown)}
 .brand .mk{width:34px;height:34px;flex:none} .brand .mk svg{width:100%;height:100%;display:block;animation:spin 60s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-nav.links{display:flex;gap:30px;align-items:center}
-nav.links a{font-size:.92rem;font-weight:500;color:var(--ink-soft);position:relative;letter-spacing:.04em;transition:.25s}
+nav.links{display:flex;gap:22px;align-items:center}
+nav.links a{font-size:.9rem;font-weight:500;color:var(--ink-soft);position:relative;letter-spacing:.04em;transition:.25s;white-space:nowrap}
 nav.links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--clay);transition:.3s;border-radius:2px}
 nav.links a:hover{color:var(--clay-deep)} nav.links a:hover::after{width:100%}
-.nav-cta{padding:9px 20px;background:var(--clay);color:#fff!important;border-radius:40px;font-weight:500;box-shadow:0 8px 20px -8px var(--clay);transition:.3s}
-.nav-cta:hover{background:var(--clay-deep);transform:translateY(-2px)} .nav-cta::after{display:none!important}
+.nav-cta{padding:8px 20px;background:transparent;color:var(--gold)!important;border:1.5px solid var(--gold);border-radius:40px;font-weight:600;letter-spacing:.08em;transition:.3s}
+.nav-cta:hover{background:var(--gold);color:#fff!important;transform:translateY(-2px);box-shadow:0 8px 20px -8px var(--gold)} .nav-cta::after{display:none!important}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
 .burger span{width:26px;height:2px;background:var(--brown);border-radius:2px;transition:.3s}
 
@@ -210,11 +210,15 @@ footer .fcopy{font-size:.8rem;opacity:.6;border-top:1px solid rgba(232,216,198,.
   <a href="#top" class="brand"><span class="mk"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(0 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(30 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(60 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(90 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(120 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(150 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(180 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(210 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(240 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(270 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(300 50 50)"/><ellipse cx="50" cy="22" rx="4.6" ry="11" fill="none" stroke="#BC6244" stroke-width="2" transform="rotate(330 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(0 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(30 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(60 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(90 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(120 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(150 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(180 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(210 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(240 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(270 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(300 50 50)"/><circle cx="50" cy="9" r="2.1" fill="#CE9B3F" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="13" fill="none" stroke="#6E9285" stroke-width="2"/><circle cx="50" cy="50" r="6" fill="#B23E6C"/><circle cx="50" cy="50" r="2.4" fill="#FAF4EA"/></svg></span>曼陀羅心靈彩繪</a>
   <button class="burger" id="burger" aria-label="選單"><span></span><span></span><span></span></button>
   <nav class="links" id="links">
-    <a href="#about">關於課程</a>
-    <a href="#teacher">授課講師</a>
-    <a href="#course">課程內容</a>
-    <a href="#gallery">作品藝廊</a>
-    <a href="https://forms.gle/ogjm98mwzJgGDMiX7" target="_blank" rel="noopener" class="nav-cta">立即報名</a>
+    <a href="#why-us">課程特色</a>
+    <a href="#curriculum">課程內容</a>
+    <a href="#artworks">學員作品</a>
+    <a href="#teacher">師資介紹</a>
+    <a href="#cohorts">歷屆紀錄</a>
+    <a href="#collab">共創作品</a>
+    <a href="#support">課後支援</a>
+    <a href="#pricing">費用班別</a>
+    <a href="#enroll" class="nav-cta">立即報名</a>
   </nav>
 </header>
 
