@@ -2051,11 +2051,31 @@ body { padding-top: 54px; }
             <p>展現流動・心靈・自由</p>
           </div>
         </div>
-        <div class="art-cat-grid">
-          <figure><img src="images/art2.jpg" alt="圓形作品集・5 件圓盤曼陀羅"></figure>
-          <figure><img src="images/art3.jpg" alt="圓形作品集・3 件深邃圓盤"></figure>
-          <figure><img src="images/art6.jpg" alt="圓形作品集・5 件圓盤繽紛"></figure>
-          <figure><img src="images/art7.jpg" alt="圓形作品集・4 件圓盤鮮豔"></figure>
+        <div class="art-marquee art-marquee-round" aria-label="圓形作品輪播展示">
+          <div class="art-track art-track-round">
+            <figure class="art-slide"><img src="artwork-02.jpg" alt="圓形曼陀羅作品 1" loading="lazy"></figure>
+            <figure class="art-slide"><img src="artwork-03.jpg" alt="圓形曼陀羅作品 2" loading="lazy"></figure>
+            <figure class="art-slide"><img src="artwork-06.jpg" alt="圓形曼陀羅作品 3" loading="lazy"></figure>
+            <figure class="art-slide"><img src="artwork-07.jpg" alt="圓形曼陀羅作品 4" loading="lazy"></figure>
+            <figure class="art-slide"><img src="FB_round_1773062278551.jpg" alt="圓形曼陀羅作品 5" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第一屆講師培訓_260521_1.jpg" alt="圓形曼陀羅作品 6" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第四屆講師課程_260521_5.jpg" alt="圓形曼陀羅作品 7" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第六屆講師培訓_260521_1.jpg" alt="圓形曼陀羅作品 8" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第十一屆講師培訓_260521_2.jpg" alt="圓形曼陀羅作品 9" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第十二屆講師培訓_260522_15.jpg" alt="圓形曼陀羅作品 10" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第十五屆講師培訓_260521_2.jpg" alt="圓形曼陀羅作品 11" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="artwork-02.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="artwork-03.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="artwork-06.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="artwork-07.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="FB_round_1773062278551.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第一屆講師培訓_260521_1.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第四屆講師課程_260521_5.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第六屆講師培訓_260521_1.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十一屆講師培訓_260521_2.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十二屆講師培訓_260522_15.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十五屆講師培訓_260521_2.jpg" alt="" loading="lazy"></figure>
+          </div>
         </div>
       </div>
 
@@ -2227,10 +2247,23 @@ body { padding-top: 54px; }
     z-index: 2;
   }
   .art-slide:hover img { transform: scale(1.05); }
-  /* 6 原 + 6 副 → 平移 -(200+12)*6 = -1272px 完成無縫接續 */
+  /* 方形：6 原 + 6 副 → 平移 -(200+12)*6 = -1272px 完成無縫接續 */
   @keyframes artScroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(calc(-200px * 6 - 12px * 6)); }
+  }
+  /* 圓形：11 原 + 11 副 → 平移 -(200+12)*11 完成無縫接續 */
+  .art-track-round { animation: artScrollRound 64s linear infinite; }
+  .art-marquee-round:hover .art-track-round { animation-play-state: paused; }
+  /* 圓形作品：把方形畫面遮罩成圓形 */
+  .art-marquee-round .art-slide {
+    border-radius: 50%;
+    box-shadow: 0 8px 22px rgba(74,63,50,0.15);
+    background: transparent;
+  }
+  @keyframes artScrollRound {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 11 - 12px * 11)); }
   }
   @media (max-width: 700px) {
     .art-slide { width: 160px; height: 160px; }
@@ -2238,6 +2271,10 @@ body { padding-top: 54px; }
     @keyframes artScroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(calc(-160px * 6 - 12px * 6)); }
+    }
+    @keyframes artScrollRound {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(calc(-160px * 11 - 12px * 11)); }
     }
   }
 
