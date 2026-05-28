@@ -2024,11 +2024,23 @@ body { padding-top: 54px; }
             <p>練習對稱・結構・幾何</p>
           </div>
         </div>
-        <div class="art-cat-grid">
-          <figure><img src="images/art1.jpg" alt="方形作品集・5 件繽紛曼陀羅"></figure>
-          <figure><img src="images/art4.jpg" alt="方形作品集・4 件深色幾何曼陀羅"></figure>
-          <figure><img src="images/art5.jpg" alt="方形作品集・5 件繽紛點繪曼陀羅"></figure>
-          <figure><img src="LINE_ALBUM_第四屆講師課程_260521_4.jpg" alt="方形作品集・4 件繽紛點繪曼陀羅（第四屆）"></figure>
+        <div class="art-marquee" aria-label="方形作品輪播展示">
+          <div class="art-track">
+            <figure class="art-slide"><img src="square1.jpg" alt="方形曼陀羅作品 1" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square2.jpg" alt="方形曼陀羅作品 2" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square3.jpg" alt="方形曼陀羅作品 3" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square4.jpg" alt="方形曼陀羅作品 4" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square5.jpg" alt="方形曼陀羅作品 5" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square6.jpg" alt="方形曼陀羅作品 6" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square7.jpg" alt="方形曼陀羅作品 7" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square1.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square2.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square3.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square4.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square5.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square6.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="square7.jpg" alt="" loading="lazy"></figure>
+          </div>
         </div>
       </div>
 
@@ -2156,6 +2168,80 @@ body { padding-top: 54px; }
     transition: transform 0.5s ease;
   }
   .art-cat-grid figure:hover img { transform: scale(1.06); }
+
+  /* ──── 方形 / 圓形作品跑馬燈（嵌入 art-category 卡片內）──── */
+  .art-marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 6px 0;
+    opacity: 1 !important;
+    min-height: 220px;
+  }
+  .art-marquee::before,
+  .art-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 36px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .art-marquee::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--cream) 0%, transparent 100%);
+  }
+  .art-marquee::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--cream) 0%, transparent 100%);
+  }
+  .art-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: artScroll 42s linear infinite;
+    will-change: transform;
+  }
+  .art-marquee:hover .art-track { animation-play-state: paused; }
+  .art-slide {
+    margin: 0;
+    flex: 0 0 auto;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(74,63,50,0.12);
+    background: var(--cream);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.4s;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .art-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .art-slide:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 28px rgba(74,63,50,0.22);
+    z-index: 2;
+  }
+  .art-slide:hover img { transform: scale(1.05); }
+  /* 7 原 + 7 副 → 平移 -(200+12)*7 = -1484px 完成無縫接續 */
+  @keyframes artScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 7 - 12px * 7)); }
+  }
+  @media (max-width: 700px) {
+    .art-slide { width: 160px; height: 160px; }
+    .art-marquee { min-height: 180px; }
+    @keyframes artScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(calc(-160px * 7 - 12px * 7)); }
+    }
+  }
 
   /* ──── Showcase 跑馬燈（12 張連續滾動）──── */
   .showcase-marquee {
