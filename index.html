@@ -2030,14 +2030,12 @@ body { padding-top: 54px; }
             <figure class="art-slide"><img src="square2.jpg" alt="方形曼陀羅作品 2" loading="lazy"></figure>
             <figure class="art-slide"><img src="square3.jpg" alt="方形曼陀羅作品 3" loading="lazy"></figure>
             <figure class="art-slide"><img src="square4.jpg" alt="方形曼陀羅作品 4" loading="lazy"></figure>
-            <figure class="art-slide"><img src="square5.jpg" alt="方形曼陀羅作品 5" loading="lazy"></figure>
-            <figure class="art-slide"><img src="square6.jpg" alt="方形曼陀羅作品 6" loading="lazy"></figure>
-            <figure class="art-slide"><img src="square7.jpg" alt="方形曼陀羅作品 7" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square6.jpg" alt="方形曼陀羅作品 5" loading="lazy"></figure>
+            <figure class="art-slide"><img src="square7.jpg" alt="方形曼陀羅作品 6" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square1.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square2.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square3.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square4.jpg" alt="" loading="lazy"></figure>
-            <figure class="art-slide" aria-hidden="true"><img src="square5.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square6.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="square7.jpg" alt="" loading="lazy"></figure>
           </div>
@@ -2229,17 +2227,17 @@ body { padding-top: 54px; }
     z-index: 2;
   }
   .art-slide:hover img { transform: scale(1.05); }
-  /* 7 原 + 7 副 → 平移 -(200+12)*7 = -1484px 完成無縫接續 */
+  /* 6 原 + 6 副 → 平移 -(200+12)*6 = -1272px 完成無縫接續 */
   @keyframes artScroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(calc(-200px * 7 - 12px * 7)); }
+    100% { transform: translateX(calc(-200px * 6 - 12px * 6)); }
   }
   @media (max-width: 700px) {
     .art-slide { width: 160px; height: 160px; }
     .art-marquee { min-height: 180px; }
     @keyframes artScroll {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(calc(-160px * 7 - 12px * 7)); }
+      100% { transform: translateX(calc(-160px * 6 - 12px * 6)); }
     }
   }
 
