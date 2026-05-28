@@ -1,0 +1,25 @@
+# 允許所有爬蟲存取（讓 FB / LINE / Twitter / Google 都能抓 OG 預覽）
+User-agent: *
+Allow: /
+
+# 明確允許 Facebook 爬蟲
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: facebookcatalog
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+# 明確允許 LINE 爬蟲
+User-agent: line-poker
+Allow: /
+
+# 明確允許 Twitter 爬蟲
+User-agent: Twitterbot
+Allow: /
+
+# 明確允許 Google
+User-agent: Googlebot
+Allow: /
