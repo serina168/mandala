@@ -986,6 +986,114 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     background: var(--ink);
   }
 
+  /* ── INLINE CTAs：頁面中段引導報名按鈕 ── */
+  .inline-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin: 56px auto 8px;
+    max-width: 560px;
+    text-align: center;
+  }
+  .inline-cta-headline {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(18px, 2.4vw, 22px);
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+  .inline-cta-headline em {
+    font-style: normal;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .inline-cta-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+  }
+  .inline-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 38px;
+    font-size: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.2,0.8,0.3,1);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Level 1：柔性引導（淺金邊框） */
+  .inline-cta-btn.level-soft {
+    background: transparent;
+    color: var(--gold-deep);
+    border: 1px solid var(--gold-deep);
+  }
+  .inline-cta-btn.level-soft:hover {
+    background: var(--gold-deep);
+    color: var(--cream);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(155,122,69,0.25);
+  }
+  /* Level 2：主要金色按鈕（明確邀請） */
+  .inline-cta-btn.level-warm {
+    background: var(--gold-deep);
+    color: var(--cream);
+    box-shadow: 0 6px 18px rgba(155,122,69,0.28);
+  }
+  .inline-cta-btn.level-warm:hover {
+    background: #876538;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(155,122,69,0.4);
+  }
+  /* Level 3：早鳥急迫感（深底＋金邊＋脈動） */
+  .inline-cta-btn.level-urgent {
+    background: var(--ink);
+    color: var(--gold-light);
+    border: 1.5px solid var(--gold-deep);
+    padding: 18px 42px;
+    font-size: 16px;
+    animation: pulseGlow 2.4s ease-in-out infinite;
+  }
+  .inline-cta-btn.level-urgent:hover {
+    background: var(--gold-deep);
+    color: var(--cream);
+    transform: translateY(-2px);
+    animation-play-state: paused;
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(155,122,69,0.55), 0 6px 16px rgba(0,0,0,0.18); }
+    50%      { box-shadow: 0 0 0 12px rgba(155,122,69,0), 0 6px 16px rgba(0,0,0,0.18); }
+  }
+  .inline-cta-meta {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+  .inline-cta-meta span::before {
+    content: '✦';
+    color: var(--gold-deep);
+    margin-right: 6px;
+  }
+  @media (max-width: 700px) {
+    .inline-cta { margin: 40px auto 4px; }
+    .inline-cta-btn { padding: 14px 30px; font-size: 14px; }
+    .inline-cta-btn.level-urgent { padding: 16px 32px; font-size: 15px; }
+  }
+
   /* ── FOOTER ── */
   .footer {
     background: var(--sand-dark);
@@ -2313,11 +2421,14 @@ body { padding-top: 54px; }
   /* 圓形：12 原 + 12 副 → 平移 -(200+12)*12 完成無縫接續 */
   .art-track-round { animation: artScrollRound 72s linear infinite; }
   .art-marquee-round:hover .art-track-round { animation-play-state: paused; }
-  /* 圓形作品：把方形畫面遮罩成圓形 */
+  /* 圓形作品：原圖完整呈現，不切成圓形外框 */
   .art-marquee-round .art-slide {
-    border-radius: 50%;
+    border-radius: 2px;
     box-shadow: 0 8px 22px rgba(74,63,50,0.15);
-    background: transparent;
+    background: var(--cream);
+  }
+  .art-marquee-round .art-slide img {
+    object-fit: contain;
   }
   @keyframes artScrollRound {
     0%   { transform: translateX(0); }
@@ -2464,6 +2575,22 @@ body { padding-top: 54px; }
   }
 </style>
 
+<!-- INLINE CTA · Level 1 柔性引導：先了解 -->
+<div style="background:var(--warm-mist);padding:0 40px 70px;">
+  <div class="inline-cta">
+    <p class="inline-cta-sub">看完作品，是不是也心動了？</p>
+    <p class="inline-cta-headline">下一步，<em>從認識完整課程開始</em></p>
+    <a href="#section-course" onclick="navClick(event,'section-course')" class="inline-cta-btn level-soft">
+      看看課程完整內容 →
+    </a>
+    <div class="inline-cta-meta">
+      <span>兩日深度浸潤</span>
+      <span>小班制教學</span>
+      <span>結業頒授證書</span>
+    </div>
+  </div>
+</div>
+
 <!-- 老師多面向風采（MEITU 形象照系列）-->
 <div style="background:var(--sand);padding:80px 40px;" id="section-teacher">
   <div style="max-width:1100px;margin:0 auto;" class="reveal">
@@ -2599,6 +2726,23 @@ body { padding-top: 54px; }
   }
   .master-row figure:hover img { transform: scale(1.06); }
 </style>
+
+
+<!-- INLINE CTA · Level 2 邀請參與：成為下一位斜槓講師 -->
+<div style="background:var(--sand);padding:0 40px 70px;">
+  <div class="inline-cta">
+    <p class="inline-cta-sub">老師親自帶領 · 一對一作品指導</p>
+    <p class="inline-cta-headline">準備好了嗎？<em>成為下一屆學員</em></p>
+    <a href="#section-enroll" onclick="navClick(event,'section-enroll')" class="inline-cta-btn level-warm">
+      我也想成為斜槓講師 ➜
+    </a>
+    <div class="inline-cta-meta">
+      <span>授課滿 14 屆</span>
+      <span>已培育 500+ 講師</span>
+      <span>結業即可獨立開課</span>
+    </div>
+  </div>
+</div>
 
 
 <!-- 與黃彥蓁老師合影珍貴瞬間 -->
@@ -2834,6 +2978,22 @@ body { padding-top: 54px; }
     <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:24px;letter-spacing:1px;">
       點擊任一張照片可放大查看
     </p>
+  </div>
+</div>
+
+<!-- INLINE CTA · Level 3 急迫早鳥：限時優惠 -->
+<div style="background:var(--cream);padding:80px 40px;border-top:0.5px solid var(--gold-light);border-bottom:0.5px solid var(--gold-light);">
+  <div class="inline-cta">
+    <p class="inline-cta-sub" style="color:var(--gold-deep);font-weight:500;">⚡ 早鳥限時優惠倒數中</p>
+    <p class="inline-cta-headline">現在報名，<em>可省下 NT$4,000＋加贈延伸課程</em></p>
+    <a href="#section-enroll" onclick="navClick(event,'section-enroll')" class="inline-cta-btn level-urgent">
+      搶下早鳥優惠 · 立即報名
+    </a>
+    <div class="inline-cta-meta">
+      <span>名額有限 · 額滿為止</span>
+      <span>分期 0 利率</span>
+      <span>結業頒授講師證書</span>
+    </div>
   </div>
 </div>
 
