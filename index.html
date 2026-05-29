@@ -2140,6 +2140,7 @@ body { padding-top: 54px; }
             <figure class="art-slide"><img src="LINE_ALBUM_第十二屆講師培訓_260522_14.jpg" alt="方形曼陀羅作品 9" loading="lazy"></figure>
             <figure class="art-slide"><img src="LINE_ALBUM_第十三屆講師培訓_260521_3.jpg" alt="方形曼陀羅作品 10" loading="lazy"></figure>
             <figure class="art-slide"><img src="LINE_ALBUM_第十五屆講師培訓_260521_1.jpg" alt="方形曼陀羅作品 11" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第十六屆講師培訓_260529_4.jpg" alt="方形曼陀羅作品 12・第十六屆" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-01.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-04.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-05.jpg" alt="" loading="lazy"></figure>
@@ -2151,6 +2152,7 @@ body { padding-top: 54px; }
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十二屆講師培訓_260522_14.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十三屆講師培訓_260521_3.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十五屆講師培訓_260521_1.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十六屆講師培訓_260529_4.jpg" alt="" loading="lazy"></figure>
           </div>
         </div>
       </div>
@@ -2173,6 +2175,7 @@ body { padding-top: 54px; }
             <figure class="art-slide"><img src="LINE_ALBUM_第十一屆講師培訓_260521_2.jpg" alt="圓形曼陀羅作品・第十一屆" loading="lazy"></figure>
             <figure class="art-slide"><img src="LINE_ALBUM_第十二屆講師培訓_260522_15.jpg" alt="圓形曼陀羅作品・第十二屆" loading="lazy"></figure>
             <figure class="art-slide"><img src="LINE_ALBUM_第十五屆講師培訓_260521_2.jpg" alt="圓形曼陀羅作品・第十五屆" loading="lazy"></figure>
+            <figure class="art-slide"><img src="LINE_ALBUM_第十六屆講師培訓_260529_5.jpg" alt="圓形曼陀羅作品・第十六屆" loading="lazy"></figure>
             <figure class="art-slide"><img src="artwork-02.jpg" alt="圓形曼陀羅作品" loading="lazy"></figure>
             <figure class="art-slide"><img src="artwork-03.jpg" alt="圓形曼陀羅作品" loading="lazy"></figure>
             <figure class="art-slide"><img src="artwork-06.jpg" alt="圓形曼陀羅作品" loading="lazy"></figure>
@@ -2185,6 +2188,7 @@ body { padding-top: 54px; }
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十一屆講師培訓_260521_2.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十二屆講師培訓_260522_15.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十五屆講師培訓_260521_2.jpg" alt="" loading="lazy"></figure>
+            <figure class="art-slide" aria-hidden="true"><img src="LINE_ALBUM_第十六屆講師培訓_260529_5.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-02.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-03.jpg" alt="" loading="lazy"></figure>
             <figure class="art-slide" aria-hidden="true"><img src="artwork-06.jpg" alt="" loading="lazy"></figure>
@@ -2413,12 +2417,12 @@ body { padding-top: 54px; }
     z-index: 2;
   }
   .art-slide:hover img { transform: scale(1.05); }
-  /* 方形：11 原 + 11 副 → 平移 -(200+12)*11 完成無縫接續 */
+  /* 方形：12 原 + 12 副 → 平移 -(200+12)*12 完成無縫接續 */
   @keyframes artScroll {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(calc(-200px * 11 - 12px * 11)); }
+    100% { transform: translateX(calc(-200px * 12 - 12px * 12)); }
   }
-  /* 圓形：12 原 + 12 副 → 平移 -(200+12)*12 完成無縫接續 */
+  /* 圓形：13 原 + 13 副 → 平移 -(200+12)*13 完成無縫接續 */
   .art-track-round { animation: artScrollRound 72s linear infinite; }
   .art-marquee-round:hover .art-track-round { animation-play-state: paused; }
   /* 圓形作品：原圖完整呈現，不切成圓形外框 */
@@ -2432,18 +2436,18 @@ body { padding-top: 54px; }
   }
   @keyframes artScrollRound {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(calc(-200px * 12 - 12px * 12)); }
+    100% { transform: translateX(calc(-200px * 13 - 12px * 13)); }
   }
   @media (max-width: 700px) {
     .art-slide { width: 160px; height: 160px; }
     .art-marquee { min-height: 180px; }
     @keyframes artScroll {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(calc(-160px * 11 - 12px * 11)); }
+      100% { transform: translateX(calc(-160px * 12 - 12px * 12)); }
     }
     @keyframes artScrollRound {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(calc(-160px * 12 - 12px * 12)); }
+      100% { transform: translateX(calc(-160px * 13 - 12px * 13)); }
     }
   }
 
