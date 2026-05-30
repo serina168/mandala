@@ -5260,17 +5260,8 @@ body { padding-top: 54px; }
       </a>
     </div>
 
-    <!-- 損失 vs 回報對照 -->
-    <div class="cta-final-comparison">
-      <div class="cta-final-side cta-final-loss">
-        <p class="cta-final-side-label">如果這次不報名</p>
-        <ul>
-          <li>下一屆要再等 <strong>半年</strong></li>
-          <li>原價恢復 <strong>NT$22,800</strong></li>
-          <li>NT$4,800 材料餐點要 <strong>自掏腰包</strong></li>
-          <li>看著別人成為下一位斜槓講師</li>
-        </ul>
-      </div>
+    <!-- 報名能得到什麼 -->
+    <div class="cta-final-comparison cta-final-comparison-single">
       <div class="cta-final-side cta-final-gain">
         <p class="cta-final-side-label">如果你現在報名</p>
         <ul>
@@ -5398,6 +5389,10 @@ body { padding-top: 54px; }
     max-width: 720px;
     margin: 0 auto 32px;
     text-align: left;
+  }
+  .cta-final-comparison-single {
+    grid-template-columns: 1fr;
+    max-width: 460px;
   }
   @media (max-width: 600px) {
     .cta-final-comparison { grid-template-columns: 1fr; gap: 12px; }
