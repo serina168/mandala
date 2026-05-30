@@ -121,7 +121,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     // 1. 主選單漢堡鈕
     var navBtn = findUp(t, function(el) { return el.id === 'nav-toggle'; });
     if (navBtn) {
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       toggleMobileMenu();
       return;
     }
@@ -130,7 +132,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
       return el.tagName === 'A' && el.parentNode && el.parentNode.id === 'mobile-menu';
     });
     if (mLink) {
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       var href = mLink.getAttribute('href') || '';
       if (href.charAt(0) === '#') {
         toggleMobileMenu(true);
@@ -146,7 +150,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     if (dLink) {
       var href2 = dLink.getAttribute('href') || '';
       if (href2.charAt(0) === '#') {
-        e.preventDefault(); e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
         scrollToSection(href2.substring(1));
         return;
       }
@@ -158,7 +164,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     if (ctaBtn) {
       var hrefC = ctaBtn.getAttribute('href') || '';
       if (hrefC.charAt(0) === '#') {
-        e.preventDefault(); e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
         scrollToSection(hrefC.substring(1));
         return;
       }
@@ -168,7 +176,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
       return el.classList && el.classList.contains('video-card');
     });
     if (vCard) {
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       openYTLightbox(vCard);
       return;
     }
@@ -183,7 +193,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     if (wrap) {
       var heroImg = wrap.querySelector ? wrap.querySelector('img') : null;
       if (heroImg) {
-        e.preventDefault(); e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
         openImageLightbox(heroImg.src, heroImg.alt);
         return;
       }
@@ -198,7 +210,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
       );
     });
     if (thumbImg) {
-      e.preventDefault(); e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       openImageLightbox(thumbImg.src, thumbImg.alt);
       return;
     }
@@ -3174,22 +3188,6 @@ body { padding-top: 54px; }
     .showcase-track { animation: none; }
   }
 </style>
-
-<!-- INLINE CTA · Level 1 柔性引導：先了解 -->
-<div style="background:var(--warm-mist);padding:0 40px 70px;">
-  <div class="inline-cta">
-    <p class="inline-cta-sub">看完作品，是不是也心動了？</p>
-    <p class="inline-cta-headline">下一步，<em>從認識完整課程開始</em></p>
-    <a href="#section-course" onclick="navClick(event,'section-course')" class="inline-cta-btn level-soft">
-      看看課程完整內容 →
-    </a>
-    <div class="inline-cta-meta">
-      <span>兩日深度浸潤</span>
-      <span>小班制教學</span>
-      <span>結業頒授證書</span>
-    </div>
-  </div>
-</div>
 
 <!-- 老師多面向風采（MEITU 形象照系列）-->
 <div style="background:var(--sand);padding:80px 40px;" id="section-teacher">
