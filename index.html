@@ -1680,32 +1680,6 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
   }
   .btn-primary:hover::after { left: 100%; }
 
-  /* 完整版連結按鈕 */
-  .full-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 36px;
-    background: var(--cream);
-    color: var(--gold-deep);
-    border: 1px solid var(--gold-deep);
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.2,0.8,0.3,1);
-    position: relative;
-    overflow: hidden;
-  }
-  .full-link-btn svg { transition: transform 0.4s cubic-bezier(0.2,0.8,0.3,1); }
-  .full-link-btn:hover {
-    background: var(--gold-deep);
-    color: var(--cream);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 26px rgba(155,122,69,0.30);
-  }
-  .full-link-btn:hover svg { transform: translateX(6px); }
-
   /* 9 大服務卡片：滑入動畫 */
   div[style*="background:#FFFFFF"][style*="padding:32px 28px"] {
     transition: transform 0.4s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.4s;
@@ -2302,6 +2276,7 @@ body { padding-top: 54px; }
     if (!id) return;
     const lightbox = document.getElementById('yt-lightbox');
     const frame = document.getElementById('yt-lightbox-frame');
+    if (!lightbox || !frame) return;
     frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&modestbranding=1&rel=0&playsinline=1&fs=1" title="影片播放" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -2309,16 +2284,23 @@ body { padding-top: 54px; }
   function closeYTLightbox() {
     const lightbox = document.getElementById('yt-lightbox');
     const frame = document.getElementById('yt-lightbox-frame');
+    if (!lightbox || !frame) return;
     frame.innerHTML = '';
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.getElementById('yt-lightbox-close').addEventListener('click', closeYTLightbox);
-  document.getElementById('yt-lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeYTLightbox();
+  // 用 DOMContentLoaded 保證元素已存在
+  document.addEventListener('DOMContentLoaded', function() {
+    var closeBtn = document.getElementById('yt-lightbox-close');
+    var lb = document.getElementById('yt-lightbox');
+    if (closeBtn) closeBtn.addEventListener('click', closeYTLightbox);
+    if (lb) lb.addEventListener('click', function(e) {
+      if (e.target === this) closeYTLightbox();
+    });
   });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('yt-lightbox').classList.contains('open')) {
+    var lb = document.getElementById('yt-lightbox');
+    if (e.key === 'Escape' && lb && lb.classList.contains('open')) {
       closeYTLightbox();
     }
   });
@@ -4916,27 +4898,6 @@ body { padding-top: 54px; }
       <div class="urgency-item"><div class="urgency-dot"></div>彩繪界首創・3 年無限免費複訓</div>
       <div class="urgency-item"><div class="urgency-dot"></div>結業頒發講師證書</div>
     </div>
-  </div>
-</div>
-
-<!-- 完整版連結 -->
-<div style="background:var(--warm-mist);padding:50px 40px;text-align:center;">
-  <div style="max-width:760px;margin:0 auto;" class="reveal">
-    <p style="font-size:10px;letter-spacing:4px;color:var(--gold-deep);margin-bottom:14px;">FULL STORY · 想看更多細節？</p>
-    <h3 style="font-family:'Noto Serif TC',serif;font-size:clamp(20px,3vw,26px);font-weight:400;color:var(--ink-text);line-height:1.6;margin-bottom:14px;">
-      閱讀<em style="color:var(--gold-deep);font-style:normal;">完整版</em>介紹
-    </h3>
-    <p style="font-size:13px;color:var(--ink-soft);line-height:1.95;margin-bottom:24px;">
-      包含更詳盡的課程設計理念、學員故事、教學系統、價值論述。<br>
-      適合想深入了解這門課的你。
-    </p>
-    <a href="index-full.html" class="full-link-btn">
-      <span>閱讀完整版</span>
-      <svg viewBox="0 0 24 12" width="24" height="12" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="1.2"/>
-        <polyline points="14,1 21,6 14,11" stroke="currentColor" stroke-width="1.2" fill="none"/>
-      </svg>
-    </a>
   </div>
 </div>
 
