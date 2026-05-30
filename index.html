@@ -5091,6 +5091,26 @@ body { padding-top: 54px; }
 // 標記 JS 已載入，啟用 reveal 動畫
 document.documentElement.classList.add('js-loaded');
 
+// ── 偵測 LINE / Facebook / Instagram 內建瀏覽器，提示用 Chrome / Safari 開啟 ──
+(function() {
+  var ua = (navigator.userAgent || '').toLowerCase();
+  var inApp = /line\/|fban|fbav|instagram|messenger|micromessenger/.test(ua);
+  if (!inApp) return;
+  // 已經被關掉就不再彈
+  try { if (sessionStorage.getItem('hide-inapp-banner') === '1') return; } catch (e) {}
+  var bar = document.createElement('div');
+  bar.id = 'inapp-banner';
+  bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:100000;background:#1a1a1a;color:#fff;padding:12px 16px;font-size:13px;line-height:1.5;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 16px rgba(0,0,0,0.3);font-family:"Noto Sans TC",sans-serif;';
+  bar.innerHTML = '<span style="flex:1;">為了完整體驗（含影片、放大照片），請點右上「⋯」 → <strong style="color:#E8C97E;">在外部瀏覽器開啟</strong></span><button id="inapp-close" style="background:transparent;border:1px solid rgba(255,255,255,0.5);color:#fff;padding:6px 12px;border-radius:3px;font-size:12px;cursor:pointer;flex-shrink:0;">關閉</button>';
+  document.body.appendChild(bar);
+  document.body.style.paddingBottom = '64px';
+  document.getElementById('inapp-close').addEventListener('click', function() {
+    bar.remove();
+    document.body.style.paddingBottom = '';
+    try { sessionStorage.setItem('hide-inapp-banner', '1'); } catch (e) {}
+  });
+})();
+
 // 滾動觸發顯示動畫
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
@@ -5242,6 +5262,64 @@ window.toggleNav = toggleNav;
 window.navClick = navClick;
 window.mobileNav = mobileNav;
 window.navScrollTo = navScrollTo;
+
+// ── 事件代理（fallback for LINE/FB/IG 等內建瀏覽器，避免 inline onclick 失效）──
+document.addEventListener('click', function(e) {
+  try {
+    // 主選單漢堡鈕
+    if (e.target.closest('#nav-toggle')) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNav();
+      return;
+    }
+    // 手機版下拉選單連結
+    var mlink = e.target.closest('#mobile-menu a[href^="#"]');
+    if (mlink) {
+      e.preventDefault();
+      var href = mlink.getAttribute('href');
+      mobileNav(href.substring(1));
+      return;
+    }
+    // 桌機選單內錨點
+    var dlink = e.target.closest('.nav-links a[href^="#"]');
+    if (dlink) {
+      e.preventDefault();
+      navScrollTo(dlink.getAttribute('href').substring(1));
+      return;
+    }
+    // CTA 內錨點按鈕
+    var cta = e.target.closest('.inline-cta-btn[href^="#"]');
+    if (cta) {
+      e.preventDefault();
+      navScrollTo(cta.getAttribute('href').substring(1));
+      return;
+    }
+    // 影片卡片
+    var videoCard = e.target.closest('.video-card');
+    if (videoCard && typeof playYouTube === 'function') {
+      e.preventDefault();
+      playYouTube(videoCard);
+      return;
+    }
+    // OUTREACH / EXHIBITIONS 圖片：點圖放大
+    var clickWrap = e.target.closest('.outreach-hero, .exhib-poster, .exhib-hero');
+    if (clickWrap) {
+      var heroImg = clickWrap.querySelector('img');
+      if (heroImg && typeof openLightbox === 'function') {
+        e.preventDefault();
+        openLightbox(heroImg.src, heroImg.alt);
+        return;
+      }
+    }
+    var thumbImg = e.target.closest('.outreach-thumbs img, .exhib-thumbs img');
+    if (thumbImg && typeof openLightbox === 'function') {
+      e.preventDefault();
+      openLightbox(thumbImg.src, thumbImg.alt);
+      return;
+    }
+  } catch (err) { /* swallow */ }
+}, true);  // capture 階段：搶在其他 listener 之前處理
 
 // scrolled shadow + active link highlight
 window.addEventListener('scroll', function() {
