@@ -2336,31 +2336,86 @@ body { padding-top: 54px; }
       十六屆精緻小班教學，建立起一條經過嚴格篩選的師資養成路徑。
     </p>
 
-    <!-- 漏斗 3 階段（mobile 自動轉直列）-->
-    <div style="display:grid;grid-template-columns:1fr;gap:14px;max-width:760px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;">
+    <!-- 漏斗 3 階段（手機自動垂直排列）-->
+    <div class="funnel-wrap">
+      <div class="funnel-row">
         <!-- Stage 1 -->
-        <div style="background:var(--cream);border:1px solid rgba(155,122,69,0.3);padding:24px 14px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold-deep);font-weight:300;line-height:1;">500+</div>
-          <p style="font-size:13px;color:var(--ink-text);margin-top:10px;font-weight:500;">學員體驗</p>
-          <p style="font-size:11px;color:var(--text-muted);margin-top:2px;">單項課程</p>
+        <div class="funnel-card">
+          <div class="funnel-num">500+</div>
+          <p class="funnel-title">學員體驗</p>
+          <p class="funnel-sub">單項課程</p>
         </div>
-        <div style="color:var(--gold-deep);font-size:20px;font-family:serif;">→</div>
+        <div class="funnel-arrow">→</div>
         <!-- Stage 2 -->
-        <div style="background:var(--cream);border:1px solid rgba(155,122,69,0.45);padding:24px 14px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold-deep);font-weight:300;line-height:1;">40+</div>
-          <p style="font-size:13px;color:var(--ink-text);margin-top:10px;font-weight:500;">講師培訓結業</p>
-          <p style="font-size:11px;color:var(--text-muted);margin-top:2px;">深入進階課程</p>
+        <div class="funnel-card funnel-card-mid">
+          <div class="funnel-num">40+</div>
+          <p class="funnel-title">講師培訓結業</p>
+          <p class="funnel-sub">深入進階課程</p>
         </div>
-        <div style="color:var(--gold-deep);font-size:20px;font-family:serif;">→</div>
+        <div class="funnel-arrow">→</div>
         <!-- Stage 3 -->
-        <div style="background:var(--gold);padding:24px 14px;">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--ink-text);font-weight:500;line-height:1;">15+</div>
-          <p style="font-size:13px;color:var(--ink-text);margin-top:10px;font-weight:600;">真正開班授課</p>
-          <p style="font-size:11px;color:var(--ink-soft);margin-top:2px;">遍佈台灣各地</p>
+        <div class="funnel-card funnel-card-final">
+          <div class="funnel-num">15+</div>
+          <p class="funnel-title">真正開班授課</p>
+          <p class="funnel-sub">遍佈台灣各地</p>
         </div>
       </div>
     </div>
+
+    <style>
+      .funnel-wrap { max-width: 760px; margin: 0 auto; }
+      .funnel-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: stretch;
+      }
+      .funnel-card {
+        background: var(--cream);
+        border: 1px solid rgba(155,122,69,0.3);
+        padding: 24px 14px;
+        text-align: center;
+        min-width: 0;
+      }
+      .funnel-card-mid { border-color: rgba(155,122,69,0.45); }
+      .funnel-card-final { background: var(--gold); border: none; }
+      .funnel-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(34px, 5vw, 48px);
+        color: var(--gold-deep);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .funnel-card-final .funnel-num { color: var(--ink-text); font-weight: 500; }
+      .funnel-title {
+        font-size: 13px;
+        color: var(--ink-text);
+        margin-top: 10px;
+        font-weight: 500;
+      }
+      .funnel-card-final .funnel-title { font-weight: 600; }
+      .funnel-sub {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .funnel-card-final .funnel-sub { color: var(--ink-soft); }
+      .funnel-arrow {
+        color: var(--gold-deep);
+        font-size: 20px;
+        font-family: serif;
+        align-self: center;
+      }
+      /* 手機：改為垂直排列 + 箭頭朝下 */
+      @media (max-width: 720px) {
+        .funnel-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .funnel-card { padding: 18px 14px; }
+        .funnel-arrow { transform: rotate(90deg); justify-self: center; font-size: 18px; }
+      }
+    </style>
 
     <!-- 37.5% 強調卡 -->
     <div style="margin-top:36px;padding:24px 32px;background:var(--cream);border:0.5px solid rgba(155,122,69,0.4);max-width:580px;margin-left:auto;margin-right:auto;">
