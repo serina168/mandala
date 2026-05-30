@@ -5125,6 +5125,8 @@ setTimeout(() => {
     lightbox.classList.add('active');
     document.body.classList.add('lightbox-open');
   }
+  // 暴露為全域，讓 HTML inline onclick="openLightbox(..)" 可呼叫
+  window.openLightbox = openLightbox;
 
   function closeLightbox() {
     lightbox.classList.remove('active');
@@ -5198,8 +5200,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 <script>
-// ── 導覽列 JS ──
-const NAV_H = () => document.getElementById('main-nav').offsetHeight;
+// ── 導覽列 JS（含完整防呆，避免任何 null/undefined 中斷後續事件）──
+const NAV_H = () => {
+  var nav = document.getElementById('main-nav');
+  return nav ? nav.offsetHeight : 54;
+};
 
 function navScrollTo(id) {
   const el = document.getElementById(id);
@@ -5208,7 +5213,7 @@ function navScrollTo(id) {
 }
 
 function navClick(e, id) {
-  e.preventDefault();
+  if (e && e.preventDefault) e.preventDefault();
   navScrollTo(id);
 }
 
@@ -5221,6 +5226,7 @@ function mobileNav(id) {
 function toggleNav(forceClose) {
   const nav = document.getElementById('main-nav');
   const menu = document.getElementById('mobile-menu');
+  if (!nav || !menu) return;
   const isOpen = nav.classList.contains('menu-open');
   if (forceClose || isOpen) {
     nav.classList.remove('menu-open');
@@ -5231,35 +5237,46 @@ function toggleNav(forceClose) {
   }
 }
 
-// scrolled shadow
-window.addEventListener('scroll', function() {
-  const nav = document.getElementById('main-nav');
-  nav.classList.toggle('scrolled', window.scrollY > 10);
+// 暴露為全域（行動裝置某些 webview 嚴格範圍）
+window.toggleNav = toggleNav;
+window.navClick = navClick;
+window.mobileNav = mobileNav;
+window.navScrollTo = navScrollTo;
 
-  // active link highlight
-  const sections = [
-    'section-home','section-stories','section-course','section-teacher',
-    'section-artworks','section-history','section-exhibitions','section-outreach',
-    'section-cert','section-testimonials','section-roi','section-enroll'
-  ];
-  let current = sections[0];
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= NAV_H() + 60) current = id;
-  });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
-  });
+// scrolled shadow + active link highlight
+window.addEventListener('scroll', function() {
+  try {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+
+    const sections = [
+      'section-home','section-stories','section-course','section-teacher',
+      'section-artworks','section-history','section-exhibitions','section-outreach',
+      'section-cert','section-testimonials','section-roi','section-enroll'
+    ];
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= NAV_H() + 60) current = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
+    });
+  } catch (err) { /* 失敗也不能讓事件鏈中斷 */ }
 }, { passive: true });
 
 // 關閉選單：點外部
 document.addEventListener('click', function(e) {
-  const nav = document.getElementById('main-nav');
-  const menu = document.getElementById('mobile-menu');
-  if (nav.classList.contains('menu-open') &&
-      !nav.contains(e.target) && !menu.contains(e.target)) {
-    toggleNav(true);
-  }
+  try {
+    const nav = document.getElementById('main-nav');
+    const menu = document.getElementById('mobile-menu');
+    if (!nav || !menu) return;
+    if (nav.classList.contains('menu-open') &&
+        !nav.contains(e.target) && !menu.contains(e.target)) {
+      toggleNav(true);
+    }
+  } catch (err) { /* 點擊一律不能被任何錯誤吃掉 */ }
 });
 </script>
 
