@@ -62,6 +62,11 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
   body {
     background:
       url('marble-texture.svg') center center / cover no-repeat fixed,
@@ -71,7 +76,12 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     font-weight: 300;
     line-height: 1.8;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
   }
+  /* 防護：所有圖片、影片、iframe 自動限制在容器內 */
+  img, video, iframe { max-width: 100%; }
 
   /* 大區塊改用半透明色，讓 body 的大理石紋若隱若現 */
   .intro-strip { background: rgba(245,239,228,0.78) !important; backdrop-filter: blur(2px); }
