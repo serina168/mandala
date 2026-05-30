@@ -41,6 +41,188 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- LINE / FB / IG 內建瀏覽器相容核心：放最前面確保最早載入 -->
+<!-- 用 ES5、不依賴外部腳本                               -->
+<!-- ════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  // 共用：找祖先元素（不依賴 .closest()，相容更廣）
+  function findUp(el, matcher) {
+    while (el && el.nodeType === 1) {
+      try { if (matcher(el)) return el; } catch (e) {}
+      el = el.parentNode;
+    }
+    return null;
+  }
+  function hasClass(el, c) { return el && el.classList && el.classList.contains(c); }
+  function hasId(el, id) { return el && el.id === id; }
+  function matchesSelector(el, selectorFn) {
+    return findUp(el, selectorFn);
+  }
+
+  // 主選單切換
+  function toggleMobileMenu(forceClose) {
+    var nav = document.getElementById('main-nav');
+    var menu = document.getElementById('mobile-menu');
+    if (!nav || !menu) return;
+    var isOpen = nav.classList.contains('menu-open');
+    if (forceClose || isOpen) {
+      nav.classList.remove('menu-open');
+      menu.classList.remove('open');
+    } else {
+      nav.classList.add('menu-open');
+      menu.classList.add('open');
+    }
+  }
+
+  // 平滑捲動到 section
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var nav = document.getElementById('main-nav');
+    var navH = (nav && nav.offsetHeight) || 54;
+    var top = el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - navH - 4;
+    try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    catch (e) { window.scrollTo(0, top); }
+  }
+
+  // 開啟圖片放大燈箱
+  function openImageLightbox(src, alt) {
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lightbox-img');
+    var cap = document.getElementById('lightbox-caption');
+    if (!lb || !img) return;
+    img.src = src;
+    img.alt = alt || '';
+    if (cap) cap.textContent = alt || '';
+    lb.classList.add('active');
+    document.body.classList.add('lightbox-open');
+  }
+
+  // 開啟 YouTube 燈箱
+  function openYTLightbox(card) {
+    var id = card.getAttribute('data-yt');
+    if (!id) return;
+    var lb = document.getElementById('yt-lightbox');
+    var frame = document.getElementById('yt-lightbox-frame');
+    if (!lb || !frame) return;
+    frame.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&modestbranding=1&rel=0&playsinline=1&fs=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // 統一點擊處理（capture phase 搶在 inline onclick 之前）
+  function clickHandler(e) {
+    var t = e.target;
+    if (!t) return;
+
+    // 1. 主選單漢堡鈕
+    var navBtn = findUp(t, function(el) { return el.id === 'nav-toggle'; });
+    if (navBtn) {
+      e.preventDefault(); e.stopPropagation();
+      toggleMobileMenu();
+      return;
+    }
+    // 2. 手機版下拉選單連結
+    var mLink = findUp(t, function(el) {
+      return el.tagName === 'A' && el.parentNode && el.parentNode.id === 'mobile-menu';
+    });
+    if (mLink) {
+      e.preventDefault(); e.stopPropagation();
+      var href = mLink.getAttribute('href') || '';
+      if (href.charAt(0) === '#') {
+        toggleMobileMenu(true);
+        setTimeout(function() { scrollToSection(href.substring(1)); }, 60);
+      }
+      return;
+    }
+    // 3. 桌機 nav-links 連結
+    var dLink = findUp(t, function(el) {
+      return el.tagName === 'A' && el.parentNode && el.parentNode.parentNode &&
+             el.parentNode.parentNode.classList && el.parentNode.parentNode.classList.contains('nav-links');
+    });
+    if (dLink) {
+      var href2 = dLink.getAttribute('href') || '';
+      if (href2.charAt(0) === '#') {
+        e.preventDefault(); e.stopPropagation();
+        scrollToSection(href2.substring(1));
+        return;
+      }
+    }
+    // 4. CTA 錨點按鈕（inline-cta-btn）
+    var ctaBtn = findUp(t, function(el) {
+      return el.tagName === 'A' && el.classList && el.classList.contains('inline-cta-btn');
+    });
+    if (ctaBtn) {
+      var hrefC = ctaBtn.getAttribute('href') || '';
+      if (hrefC.charAt(0) === '#') {
+        e.preventDefault(); e.stopPropagation();
+        scrollToSection(hrefC.substring(1));
+        return;
+      }
+    }
+    // 5. 影片卡片
+    var vCard = findUp(t, function(el) {
+      return el.classList && el.classList.contains('video-card');
+    });
+    if (vCard) {
+      e.preventDefault(); e.stopPropagation();
+      openYTLightbox(vCard);
+      return;
+    }
+    // 6. OUTREACH/EXHIBITIONS 主視覺/海報
+    var wrap = findUp(t, function(el) {
+      return el.classList && (
+        el.classList.contains('outreach-hero') ||
+        el.classList.contains('exhib-poster') ||
+        el.classList.contains('exhib-hero')
+      );
+    });
+    if (wrap) {
+      var heroImg = wrap.querySelector ? wrap.querySelector('img') : null;
+      if (heroImg) {
+        e.preventDefault(); e.stopPropagation();
+        openImageLightbox(heroImg.src, heroImg.alt);
+        return;
+      }
+    }
+    // 7. OUTREACH/EXHIBITIONS 縮圖
+    var thumbImg = findUp(t, function(el) {
+      if (el.tagName !== 'IMG') return false;
+      var p = el.parentNode;
+      return p && p.classList && (
+        p.classList.contains('outreach-thumbs') ||
+        p.classList.contains('exhib-thumbs')
+      );
+    });
+    if (thumbImg) {
+      e.preventDefault(); e.stopPropagation();
+      openImageLightbox(thumbImg.src, thumbImg.alt);
+      return;
+    }
+  }
+
+  // 同時掛 click 和 touchend（某些 WebView 只觸發其中一個）
+  document.addEventListener('click', clickHandler, true);
+
+  // 暴露為全域，方便其他 inline 引用
+  window.toggleNav = function(forceClose) { toggleMobileMenu(forceClose); };
+  window.mobileNav = function(id) {
+    toggleMobileMenu(true);
+    setTimeout(function() { scrollToSection(id); }, 60);
+    return false;
+  };
+  window.navClick = function(e, id) {
+    if (e && e.preventDefault) e.preventDefault();
+    scrollToSection(id);
+  };
+  window.navScrollTo = scrollToSection;
+  window.openLightbox = openImageLightbox;
+  window.playYouTube = openYTLightbox;
+})();
+</script>
 <style>
   :root {
     --gold: #C9A96E;
