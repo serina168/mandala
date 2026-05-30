@@ -1755,6 +1755,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
     <li><a href="#section-history"  onclick="navClick(event,'section-history')">歷屆紀錄</a></li>
     <li><a href="#section-exhibitions" onclick="navClick(event,'section-exhibitions')">講師聯展</a></li>
     <li><a href="#section-outreach" onclick="navClick(event,'section-outreach')">校園社群</a></li>
+    <li><a href="#section-cert"     onclick="navClick(event,'section-cert')">結業證書</a></li>
+    <li><a href="#section-testimonials" onclick="navClick(event,'section-testimonials')">學員見證</a></li>
+    <li><a href="#section-roi"      onclick="navClick(event,'section-roi')">結業出路</a></li>
     <li class="nav-enroll-item"><a href="#section-enroll" onclick="navClick(event,'section-enroll')">報名資訊</a></li>
   </ul>
   <button id="nav-toggle" aria-label="開啟選單" onclick="toggleNav()">
@@ -1771,6 +1774,9 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
   <a href="#section-history"  onclick="mobileNav('section-history')">歷屆紀錄</a>
   <a href="#section-exhibitions" onclick="mobileNav('section-exhibitions')">講師聯展</a>
   <a href="#section-outreach" onclick="mobileNav('section-outreach')">校園社群</a>
+  <a href="#section-cert"     onclick="mobileNav('section-cert')">結業證書</a>
+  <a href="#section-testimonials" onclick="mobileNav('section-testimonials')">學員見證</a>
+  <a href="#section-roi"      onclick="mobileNav('section-roi')">結業出路</a>
   <a href="#section-enroll"   onclick="mobileNav('section-enroll')" class="mobile-enroll-link">報名資訊</a>
 </div>
 
@@ -3544,7 +3550,7 @@ body { padding-top: 54px; }
 <!-- ════════════════════════════════════════════════ -->
 <!-- CERTIFICATE STRIP・結業認證 -->
 <!-- ════════════════════════════════════════════════ -->
-<div class="cert-strip">
+<div class="cert-strip" id="section-cert">
   <div class="cert-strip-inner reveal">
     <div class="section-label">結業認證</div>
     <h2 class="section-heading" style="font-size:clamp(20px,3vw,30px);">完成課程，取得正式師資認定</h2>
@@ -3562,7 +3568,7 @@ body { padding-top: 54px; }
 <!-- ════════════════════════════════════════════════ -->
 <!-- TESTIMONIALS・學員見證 -->
 <!-- ════════════════════════════════════════════════ -->
-<div class="testimonials-section">
+<div class="testimonials-section" id="section-testimonials">
   <div class="testimonials-inner reveal">
     <!-- 見證主視覺大照片 -->
     <div style="margin-bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:var(--border-radius-lg);overflow:hidden;">
@@ -3708,7 +3714,7 @@ body { padding-top: 54px; }
 <!-- ════════════════════════════════════════════════ -->
 <!-- ROI SECTION・學完這門課，你能做什麼 -->
 <!-- ════════════════════════════════════════════════ -->
-<div class="roi-section">
+<div class="roi-section" id="section-roi">
   <div class="roi-inner reveal">
     <div class="section-label" style="color:var(--text-muted);">結業之後</div>
     <h2 class="section-heading" style="color:var(--ink-text);">學完這門課，<br><em style="color:var(--gold-deep);">你能做什麼？</em></h2>
@@ -4893,7 +4899,8 @@ window.addEventListener('scroll', function() {
   // active link highlight
   const sections = [
     'section-home','section-stories','section-course','section-teacher',
-    'section-artworks','section-history','section-exhibitions','section-outreach','section-enroll'
+    'section-artworks','section-history','section-exhibitions','section-outreach',
+    'section-cert','section-testimonials','section-roi','section-enroll'
   ];
   let current = sections[0];
   sections.forEach(id => {
