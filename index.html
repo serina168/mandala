@@ -1840,6 +1840,8 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
   flex-shrink: 0;
   box-shadow: 0 3px 10px rgba(155,122,69,0.30);
   transition: background 0.2s, transform 0.2s;
+  margin: 0;
+  font-family: inherit;
 }
 #nav-toggle:hover { background: #876538; }
 #nav-toggle:active { transform: scale(0.96); }
@@ -1907,9 +1909,9 @@ body { padding-top: 54px; }
 
 /* ── 手機版 RWD ── */
 @media (max-width: 920px) {
-  .nav-links { display: none; }
-  #nav-toggle { display: flex; }
-  #main-nav { padding: 0 20px; }
+  .nav-links { display: none !important; }
+  #nav-toggle { display: flex !important; }
+  #main-nav { padding: 0 16px !important; }
   .nav-logo { font-size: 12px; letter-spacing: 1.5px; }
 }
 @media (max-width: 420px) {
