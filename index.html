@@ -100,6 +100,30 @@
   .sec-head p{margin-top:16px;color:var(--ink-soft);font-size:16px}
   .divider{width:54px;height:2px;background:var(--gold);margin:20px auto 0;border:0}
 
+  /* ===== STATS ===== */
+  .stats{background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:36px 22px;text-align:center;color:#fff}
+  .stat .num{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,5vw,46px);font-weight:500;line-height:1}
+  .stat .num span{font-size:.5em;margin-left:2px;vertical-align:super}
+  .stat .lbl{font-size:13.5px;margin-top:8px;color:#fff7ea;letter-spacing:.02em}
+  .stat+.stat{border-left:1px solid rgba(255,255,255,.28)}
+  @media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr;gap:28px 12px}.stat+.stat{border-left:0}}
+
+  /* ===== WHY ===== */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .why-card{display:flex;gap:18px;background:var(--cream);border:1px solid var(--sand-dark);border-radius:14px;padding:26px 24px;transition:.25s}
+  .why-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(74,63,50,.12)}
+  .why-card .ic{flex:0 0 auto;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-size:23px}
+  .why-card h3{font-size:17.5px;font-weight:500;margin-bottom:6px}
+  .why-card p{font-size:14.5px;color:var(--ink-soft)}
+  @media(max-width:780px){.why-grid{grid-template-columns:1fr}}
+
+  /* ===== URGENT ===== */
+  .en-urgent{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+       background:rgba(196,128,106,.2);border:1px solid rgba(196,128,106,.55);border-radius:12px;
+       padding:15px 22px;text-align:center;font-size:14.5px;color:#f6e4da;margin-bottom:22px;line-height:1.7}
+  .en-urgent b{color:#fff}
+
   /* ===== GOALS ===== */
   .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .goal{background:var(--cream);border:1px solid var(--sand-dark);border-radius:14px;
@@ -264,6 +288,7 @@
       <li><a href="#home">首頁</a></li>
       <li><a href="#goals">課程目標</a></li>
       <li><a href="#course">課程內容</a></li>
+      <li><a href="#why">課程亮點</a></li>
       <li><a href="#gallery">考核作品</a></li>
       <li><a href="#history">歷屆紀錄</a></li>
       <li><a href="#teacher">老師介紹</a></li>
@@ -280,8 +305,8 @@
     <div class="hero-text">
       <div class="hero-eyebrow latin">Advanced Instructor Program · Level 1</div>
       <h1>曼陀羅心靈彩繪<br><b>一級講師培訓</b></h1>
-      <div class="hero-sub">進階課程 ── 連續兩天 22 小時密集班</div>
-      <p style="color:var(--ink-soft);font-size:15.5px;margin-top:8px">大型八角板木器創作 × 施華洛世奇鑽飾應用 × 15 件作品解析 × 團體創作與教學引導，深化你的設計力、實作力與教學引導力。</p>
+      <div class="hero-sub">從「會畫」到「能教」——成為能<b style="color:var(--gold-deep);font-weight:500">原創設計</b>、能<b style="color:var(--gold-deep);font-weight:500">引導他人</b>、能<b style="color:var(--gold-deep);font-weight:500">授證教學</b>的曼陀羅一級講師</div>
+      <p style="color:var(--ink-soft);font-size:15.5px;margin-top:12px">連續兩天 22 小時密集班，把 <b>35 年</b>色彩心靈美學，淬鍊成屬於你的原創設計力與教學實力。大型八角板木器 × 施華洛世奇鑽飾 × 15 件作品解析。</p>
       <span class="hero-tag">獨一無二的曼陀羅設計創作</span>
       <div class="hero-cta">
         <a href="#enroll" class="btn btn-primary">立即報名 →</a>
@@ -293,6 +318,16 @@
     </div>
   </div>
 </header>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num">35<span>年</span></div><div class="lbl">色彩與心靈藝術資歷</div></div>
+    <div class="stat"><div class="num">CDA</div><div class="lbl">美國 SDP 國際認證講師</div></div>
+    <div class="stat"><div class="num">500<span>+</span></div><div class="lbl">學員作品解析淬鍊</div></div>
+    <div class="stat"><div class="num">3<span>年</span></div><div class="lbl">全球唯一・免費複訓</div></div>
+  </div>
+</section>
 
 <!-- GOALS -->
 <section class="sec" id="goals">
@@ -367,6 +402,36 @@
           下午茶休息 15 分鐘（提供點心與茶水）<br>
           晚餐休息 30 分鐘（主辦單位提供餐點）
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow latin">Why Choose Us</div>
+      <h2>為何選擇<b>這門進階課程</b></h2>
+      <hr class="divider">
+      <p>不只是再上一堂課——而是一次把師資、保障、規格與教學力全部到位的進階躍升。</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ic">🌏</div>
+        <div><h3>國際級師資親授</h3><p>黃彥蓁老師——台灣首位受邀赴美國俄亥俄州彩繪大會授課的華人講師，35 年資歷、美國 SDP「CDA」國際認證藝術家。</p></div>
+      </div>
+      <div class="why-card">
+        <div class="ic">♾️</div>
+        <div><h3>全球唯一・3 年免費複訓</h3><p>彩繪界首創——結業後 3 年內免學費無限次複訓。因為好老師，從來不是一夕養成。</p></div>
+      </div>
+      <div class="why-card">
+        <div class="ic">💎</div>
+        <div><h3>專業級高規格實作</h3><p>大型八角板木器 × 施華洛世奇鑽飾，搭配高級貂毛筆等專業工具，作品質感直接拉到可販售、可參展的水準。</p></div>
+      </div>
+      <div class="why-card">
+        <div class="ic">🎓</div>
+        <div><h3>不只會畫，更能教</h3><p>15 件作品解析 × 教學引導訓練 × 團體創作演練，結業即可開班授課、教授二級課程並協助學員考證。</p></div>
       </div>
     </div>
   </div>
@@ -559,6 +624,8 @@
     </div>
 
     <div class="en-prereq">📌 報名資格：學員需具備曼陀羅心靈彩繪 <b>二級講師（初階）證書</b>。</div>
+
+    <div class="en-urgent">⏳ <b>小班制每班僅收 10 人，名額有限</b>　｜　二級講師於完成課程<b>一週內報名</b>，享優惠價 <b>$29,800</b> 並<b>免費升級八角桌</b></div>
 
     <div class="en-grid">
       <div class="en-card">
