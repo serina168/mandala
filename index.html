@@ -172,7 +172,8 @@
 
   /* ===== TEACHER ===== */
   .teacher{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
-  .teacher-photo img{border-radius:16px;box-shadow:0 22px 50px rgba(74,63,50,.24)}
+  .teacher-photo{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  .teacher-photo img{border-radius:14px;box-shadow:0 14px 32px rgba(74,63,50,.2);width:100%;aspect-ratio:4/5;object-fit:cover}
   .teacher h3{font-size:clamp(22px,3.2vw,30px);font-weight:300;margin-bottom:6px}
   .teacher h3 b{color:var(--gold-deep);font-weight:500}
   .teacher .role{color:var(--gold-deep);font-size:14px;margin-bottom:20px;letter-spacing:.04em}
@@ -181,7 +182,7 @@
   .cred{list-style:none;display:grid;gap:10px}
   .cred li{position:relative;padding-left:24px;font-size:15px;color:var(--ink-soft)}
   .cred li::before{content:"✦";position:absolute;left:0;top:1px;color:var(--gold)}
-  @media(max-width:820px){.teacher{grid-template-columns:1fr;gap:30px}.teacher-photo img{max-width:360px;margin:0 auto}}
+  @media(max-width:820px){.teacher{grid-template-columns:1fr;gap:30px}.teacher-photo{max-width:440px;margin:0 auto}}
 
   /* ===== CERT ===== */
   .cert-wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch}
@@ -478,7 +479,7 @@
     <div class="teacher">
       <div class="teacher-photo">
         <img src="l1/teacher_full.jpg" alt="黃彥蓁老師">
-        <img src="l1/teacher_portrait.jpg" alt="黃彥蓁老師形象照" style="margin-top:16px">
+        <img src="l1/teacher_portrait.jpg" alt="黃彥蓁老師形象照">
       </div>
       <div>
         <h3>黃彥蓁<b>老師</b></h3>
