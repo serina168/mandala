@@ -157,6 +157,19 @@
     .res-grid{grid-template-columns:repeat(3,1fr)}
   }
 
+  /* ===== HISTORY / COHORTS ===== */
+  .cohort{margin-bottom:54px}
+  .cohort:last-child{margin-bottom:0}
+  .cohort-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .cohort-no{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold);line-height:1;
+       border:1px solid var(--gold);border-radius:50%;width:62px;height:62px;display:flex;
+       align-items:center;justify-content:center;flex:0 0 auto}
+  .cohort-head h3{font-size:22px;font-weight:500}
+  .cohort-head .sub{font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+  .cohort-feature img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;
+       cursor:pointer;box-shadow:0 14px 34px rgba(74,63,50,.18);margin-bottom:14px}
+  @media(max-width:600px){.cohort-feature img{aspect-ratio:4/3}}
+
   /* ===== TEACHER ===== */
   .teacher{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
   .teacher-photo img{border-radius:16px;box-shadow:0 22px 50px rgba(74,63,50,.24)}
@@ -250,8 +263,8 @@
       <li><a href="#home">首頁</a></li>
       <li><a href="#goals">課程目標</a></li>
       <li><a href="#course">課程內容</a></li>
-      <li><a href="#gallery">作品集</a></li>
-      <li><a href="#results">學員成果</a></li>
+      <li><a href="#gallery">考核作品</a></li>
+      <li><a href="#history">歷屆紀錄</a></li>
       <li><a href="#teacher">老師介紹</a></li>
       <li><a href="#cert">講師證書</a></li>
       <li><a href="#benefits">學員福利</a></li>
@@ -363,55 +376,94 @@
 <section class="sec" id="gallery">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-eyebrow latin">Artworks Gallery</div>
-      <h2>進階<b>作品集</b></h2>
+      <div class="sec-eyebrow latin">Certified Works</div>
+      <h2>考核<b>通過作品</b></h2>
       <hr class="divider">
-      <p>八角板木器 × 施華洛世奇鑽飾的立體曼陀羅創作——點擊放大欣賞。</p>
+      <p>完成 22 小時課程並通過考核的曼陀羅作品——八角板木器 × 施華洛世奇鑽飾，點擊放大欣賞。</p>
     </div>
     <div class="gallery">
-      <img src="l1/art1.jpg" alt="一級進階曼陀羅作品 1" loading="lazy" onclick="lb(this)">
-      <img src="l1/art2.jpg" alt="一級進階曼陀羅作品 2" loading="lazy" onclick="lb(this)">
-      <img src="l1/art3.jpg" alt="一級進階曼陀羅作品 3" loading="lazy" onclick="lb(this)">
-      <img src="l1/art4.jpg" alt="一級進階曼陀羅作品 4" loading="lazy" onclick="lb(this)">
-      <img src="l1/art5.jpg" alt="一級進階曼陀羅作品 5" loading="lazy" onclick="lb(this)">
-      <img src="l1/art6.jpg" alt="一級進階曼陀羅作品 6" loading="lazy" onclick="lb(this)">
-      <img src="l1/art7.jpg" alt="一級進階曼陀羅作品 7" loading="lazy" onclick="lb(this)">
-      <img src="l1/art8.jpg" alt="一級進階曼陀羅作品 8" loading="lazy" onclick="lb(this)">
+      <img src="l1/art1.jpg" alt="考核通過作品 1" loading="lazy" onclick="lb(this)">
+      <img src="l1/art2.jpg" alt="考核通過作品 2" loading="lazy" onclick="lb(this)">
+      <img src="l1/art3.jpg" alt="考核通過作品 3" loading="lazy" onclick="lb(this)">
+      <img src="l1/art4.jpg" alt="考核通過作品 4" loading="lazy" onclick="lb(this)">
+      <img src="l1/art5.jpg" alt="考核通過作品 5" loading="lazy" onclick="lb(this)">
+      <img src="l1/art6.jpg" alt="考核通過作品 6" loading="lazy" onclick="lb(this)">
     </div>
   </div>
 </section>
 
-<!-- RESULTS -->
-<section class="sec sand" id="results">
+<!-- HISTORY -->
+<section class="sec sand" id="history">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-eyebrow latin">Students & Process</div>
-      <h2>學員<b>成果與創作現場</b></h2>
+      <div class="sec-eyebrow latin">Class History</div>
+      <h2>歷屆<b>紀錄</b></h2>
       <hr class="divider">
-      <p>團體創作合照、學員手持完成作品，以及在八角板上一筆一畫的創作過程。</p>
+      <p>每一屆的團體合照、學員作品與創作現場——一筆一畫，都是看見自己的過程。</p>
     </div>
-    <div class="res-feature">
-      <img src="l1/group1.jpg" alt="團體創作合照 1" loading="lazy" onclick="lb(this)">
-      <img src="l1/group2.jpg" alt="團體創作合照 2" loading="lazy" onclick="lb(this)">
-      <img src="l1/group3.jpg" alt="團體創作合照 3" loading="lazy" onclick="lb(this)">
+
+    <!-- 第一屆 -->
+    <div class="cohort">
+      <div class="cohort-head">
+        <div class="cohort-no">01</div>
+        <div><h3>第一屆</h3><div class="sub">團體創作・學員作品・創作過程</div></div>
+      </div>
+      <div class="cohort-feature"><img src="l1/c1/group1.jpg" alt="第一屆團體合照" loading="lazy" onclick="lb(this)"></div>
+      <div class="res-grid">
+        <img src="l1/c1/ind2.jpg" alt="第一屆學員作品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/ind3.jpg" alt="第一屆學員作品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/ind4.jpg" alt="第一屆學員作品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/inst2.jpg" alt="第一屆學員成品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/inst3.jpg" alt="第一屆學員成品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/inst4.jpg" alt="第一屆學員成品" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/proc1.jpg" alt="第一屆創作過程" loading="lazy" onclick="lb(this)">
+        <img src="l1/c1/proc2.jpg" alt="第一屆創作過程" loading="lazy" onclick="lb(this)">
+      </div>
     </div>
-    <div class="res-grid">
-      <img src="l1/ind1.jpg" alt="學員作品 1" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind2.jpg" alt="學員作品 2" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind3.jpg" alt="學員作品 3" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind4.jpg" alt="學員作品 4" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind5.jpg" alt="學員作品 5" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind6.jpg" alt="學員作品 6" loading="lazy" onclick="lb(this)">
-      <img src="l1/ind7.jpg" alt="學員作品 7" loading="lazy" onclick="lb(this)">
-      <img src="l1/inst1.jpg" alt="學員成果 8" loading="lazy" onclick="lb(this)">
-      <img src="l1/inst2.jpg" alt="學員成果 9" loading="lazy" onclick="lb(this)">
-      <img src="l1/inst3.jpg" alt="學員成果 10" loading="lazy" onclick="lb(this)">
-      <img src="l1/inst4.jpg" alt="學員成果 11" loading="lazy" onclick="lb(this)">
-      <img src="l1/proc1.jpg" alt="創作過程 1" loading="lazy" onclick="lb(this)">
-      <img src="l1/proc2.jpg" alt="創作過程 2" loading="lazy" onclick="lb(this)">
-      <img src="l1/proc3.jpg" alt="創作過程 3" loading="lazy" onclick="lb(this)">
-      <img src="l1/proc4.jpg" alt="創作過程 4" loading="lazy" onclick="lb(this)">
-      <img src="l1/process.jpg" alt="創作過程 5" loading="lazy" onclick="lb(this)">
+
+    <!-- 第二屆 -->
+    <div class="cohort">
+      <div class="cohort-head">
+        <div class="cohort-no">02</div>
+        <div><h3>第二屆</h3><div class="sub">團體創作・作品・創作過程</div></div>
+      </div>
+      <div class="cohort-feature"><img src="l1/c2/group2.jpg" alt="第二屆團體合照" loading="lazy" onclick="lb(this)"></div>
+      <div class="res-grid">
+        <img src="l1/c2/470935_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470936_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470937_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470938_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470939_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470940_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470941_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470942_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/470943_0.jpg" alt="第二屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c2/proc3.jpg" alt="第二屆創作過程" loading="lazy" onclick="lb(this)">
+      </div>
+    </div>
+
+    <!-- 第三屆 -->
+    <div class="cohort">
+      <div class="cohort-head">
+        <div class="cohort-no">03</div>
+        <div><h3>第三屆</h3><div class="sub">團體創作・學員作品・創作過程</div></div>
+      </div>
+      <div class="cohort-feature"><img src="l1/c3/group3.jpg" alt="第三屆團體合照" loading="lazy" onclick="lb(this)"></div>
+      <div class="res-grid">
+        <img src="l1/c3/470944_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470945_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470946_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470947_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470948_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470949_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470950_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470951_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470952_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470953_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470954_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470955_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+        <img src="l1/c3/470956_0.jpg" alt="第三屆創作" loading="lazy" onclick="lb(this)">
+      </div>
     </div>
   </div>
 </section>
@@ -425,7 +477,10 @@
       <hr class="divider">
     </div>
     <div class="teacher">
-      <div class="teacher-photo"><img src="l1/teacher_portrait.jpg" alt="黃彥蓁老師"></div>
+      <div class="teacher-photo">
+        <img src="l1/teacher_full.jpg" alt="黃彥蓁老師">
+        <img src="l1/teacher_portrait.jpg" alt="黃彥蓁老師形象照" style="margin-top:16px">
+      </div>
       <div>
         <h3>黃彥蓁<b>老師</b></h3>
         <div class="role">中華綜合發展研究院・文創藝術研究所 所長｜心靈藝術美學中心 主任</div>
