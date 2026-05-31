@@ -127,36 +127,8 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
       toggleMobileMenu();
       return;
     }
-    // 2. 手機版下拉選單連結
-    var mLink = findUp(t, function(el) {
-      return el.tagName === 'A' && el.parentNode && el.parentNode.id === 'mobile-menu';
-    });
-    if (mLink) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-      var href = mLink.getAttribute('href') || '';
-      if (href.charAt(0) === '#') {
-        toggleMobileMenu(true);
-        setTimeout(function() { scrollToSection(href.substring(1)); }, 60);
-      }
-      return;
-    }
-    // 3. 桌機 nav-links 連結
-    var dLink = findUp(t, function(el) {
-      return el.tagName === 'A' && el.parentNode && el.parentNode.parentNode &&
-             el.parentNode.parentNode.classList && el.parentNode.parentNode.classList.contains('nav-links');
-    });
-    if (dLink) {
-      var href2 = dLink.getAttribute('href') || '';
-      if (href2.charAt(0) === '#') {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-        scrollToSection(href2.substring(1));
-        return;
-      }
-    }
+    // 2+3. 導覽連結（桌機 nav-links 與手機 mobile-menu）改由 CSS scroll-behavior 處理，
+    // 僅手機需要關閉選單，透過 onclick="mobileNav()" 完成，不在此攔截。
     // 4. CTA 錨點按鈕（inline-cta-btn）
     var ctaBtn = findUp(t, function(el) {
       return el.tagName === 'A' && el.classList && el.classList.contains('inline-cta-btn');
@@ -225,8 +197,6 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
   window.toggleNav = function(forceClose) { toggleMobileMenu(forceClose); };
   window.mobileNav = function(id) {
     toggleMobileMenu(true);
-    setTimeout(function() { scrollToSection(id); }, 60);
-    return false;
   };
   window.navClick = function(e, id) {
     if (e && e.preventDefault) e.preventDefault();
@@ -1926,18 +1896,18 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
 <nav id="main-nav">
   <span class="nav-logo" onclick="navScrollTo('section-home')">心語能量美學</span>
   <ul class="nav-links">
-    <li><a href="#section-home"     onclick="navClick(event,'section-home')">首頁</a></li>
-    <li><a href="#section-stories"  onclick="navClick(event,'section-stories')">影片故事</a></li>
-    <li><a href="#section-course"   onclick="navClick(event,'section-course')">課程內容</a></li>
-    <li><a href="#section-artworks" onclick="navClick(event,'section-artworks')">學員作品</a></li>
-    <li><a href="#section-teacher"  onclick="navClick(event,'section-teacher')">老師介紹</a></li>
-    <li><a href="#section-history"  onclick="navClick(event,'section-history')">歷屆紀錄</a></li>
-    <li><a href="#section-exhibitions" onclick="navClick(event,'section-exhibitions')">講師聯展</a></li>
-    <li><a href="#section-outreach" onclick="navClick(event,'section-outreach')">校園社群</a></li>
-    <li><a href="#section-cert"     onclick="navClick(event,'section-cert')">結業證書</a></li>
-    <li><a href="#section-testimonials" onclick="navClick(event,'section-testimonials')">學員見證</a></li>
-    <li><a href="#section-roi"      onclick="navClick(event,'section-roi')">結業出路</a></li>
-    <li class="nav-enroll-item"><a href="#section-enroll" onclick="navClick(event,'section-enroll')">報名資訊</a></li>
+    <li><a href="#section-home">首頁</a></li>
+    <li><a href="#section-stories">影片故事</a></li>
+    <li><a href="#section-course">課程內容</a></li>
+    <li><a href="#section-artworks">學員作品</a></li>
+    <li><a href="#section-teacher">老師介紹</a></li>
+    <li><a href="#section-history">歷屆紀錄</a></li>
+    <li><a href="#section-exhibitions">講師聯展</a></li>
+    <li><a href="#section-outreach">校園社群</a></li>
+    <li><a href="#section-cert">結業證書</a></li>
+    <li><a href="#section-testimonials">學員見證</a></li>
+    <li><a href="#section-roi">結業出路</a></li>
+    <li class="nav-enroll-item"><a href="#section-enroll">報名資訊</a></li>
   </ul>
   <button id="nav-toggle" aria-label="開啟選單" onclick="toggleNav()">
     <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
@@ -2105,6 +2075,8 @@ src="https://www.facebook.com/tr?id=979843561516505&ev=PageView&noscript=1"
 
 /* ── 補高，避免內容被導覽列蓋住 ── */
 body { padding-top: 54px; }
+/* ── 原生錨點導航：平滑捲動 + 固定 nav 偏移 ── */
+html { scroll-behavior: smooth; scroll-padding-top: 58px; }
 
 /* ── 手機版 RWD ── */
 @media (max-width: 920px) {
@@ -5716,21 +5688,7 @@ document.addEventListener('click', function(e) {
       toggleNav();
       return;
     }
-    // 手機版下拉選單連結
-    var mlink = e.target.closest('#mobile-menu a[href^="#"]');
-    if (mlink) {
-      e.preventDefault();
-      var href = mlink.getAttribute('href');
-      mobileNav(href.substring(1));
-      return;
-    }
-    // 桌機選單內錨點
-    var dlink = e.target.closest('.nav-links a[href^="#"]');
-    if (dlink) {
-      e.preventDefault();
-      navScrollTo(dlink.getAttribute('href').substring(1));
-      return;
-    }
+    // 手機 / 桌機 nav 連結：由 CSS scroll-behavior 處理，不在此攔截。
     // CTA 內錨點按鈕
     var cta = e.target.closest('.inline-cta-btn[href^="#"]');
     if (cta) {
